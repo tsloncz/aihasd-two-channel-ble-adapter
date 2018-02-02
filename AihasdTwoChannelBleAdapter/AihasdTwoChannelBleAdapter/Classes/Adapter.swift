@@ -25,10 +25,10 @@ public class AihasdTwoChannelBleAdapter {
     
     // Board suppported commands
     public enum BoardCommand {
-        case .relayOneOn
-        case .relayTwoOff
-        case .relayTwoOn
-        case .relayTwoOff
+        case relayOneOn
+        case relayOneOff
+        case relayTwoOn
+        case relayTwoOff
     }
     
     private let byteOneRelayOneOn = UInt16(0xc504).bigEndian//NSData(bytes: [UInt16(0xc504).bigEndian], length: 2)
@@ -42,21 +42,25 @@ public class AihasdTwoChannelBleAdapter {
     private let finalByte = UInt16(0xaa)//NSData(bytes: [UInt16(0x38aa).bigEndian], length: 2)
     
 
+    //MARK: Class functions
+    private func writeBytesWith(initialByte: UInt16) -> Data {
+        var writeBytes = [byteOneRelayOneOn, byteTheeFour, byteFiveSix, byteSevenEight, byteNineTen, finalByte]
+        writeBytes[0] = initialByte
+        return Data(bytes: &writeBytes, count: 11)
+    }
+    
     //MARK: Public functions
     
     public func writeDataFor(_ command: BoardCommand) -> Data {
-        // Default to relayOneOn command
-        var writeBytes = [byteOneRelayOneOn, byteTheeFour, byteFiveSix, byteSevenEight, byteNineTen, finalByte]
         switch command {
-        case .fogOn:
-            break
-        case .fogOff:
-            writeBytes[0] = byteOneRelayOneOff
+        case .relayOneOn:
+            return writeBytesWith(initialByte: byteOneRelayOneOn)
+        case .relayOneOff:
+            return writeBytesWith(initialByte: byteOneRelayOneOff)
         case .relayTwoOn:
-            writeBytes[0] = byteOneRelayTwoOn
+            return writeBytesWith(initialByte: byteOneRelayTwoOn)
         case .relayTwoOff:
-            writeBytes[0] = byteOneRelayTwoOff
+            return writeBytesWith(initialByte: byteOneRelayTwoOff)
         }
-        return Data(bytes: &writeBytes, count: 11)
     }
 }
