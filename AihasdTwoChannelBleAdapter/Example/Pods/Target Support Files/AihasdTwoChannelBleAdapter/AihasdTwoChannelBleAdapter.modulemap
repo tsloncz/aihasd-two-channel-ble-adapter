@@ -1,0 +1,6 @@
+framework module AihasdTwoChannelBleAdapter {
+  umbrella header "AihasdTwoChannelBleAdapter-umbrella.h"
+
+  export *
+  module * { export * }
+}

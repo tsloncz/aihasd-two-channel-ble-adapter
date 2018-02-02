@@ -1,15 +1,8 @@
-//
-//  AihasdTwoChannelBleAdapterTests.swift
-//  AihasdTwoChannelBleAdapterTests
-//
-//  Created by Tim Sloncz on 2/2/18.
-//  Copyright © 2018 timsloncz. All rights reserved.
-//
-
+import UIKit
 import XCTest
-@testable import AihasdTwoChannelBleAdapter
+import AihasdTwoChannelBleAdapter
 
-class AihasdTwoChannelBleAdapterTests: XCTestCase {
+class Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -23,12 +16,12 @@ class AihasdTwoChannelBleAdapterTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssert(true, "Pass")
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measure {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AihasdTwoChannelBleAdapter_Example' do
+  pod 'AihasdTwoChannelBleAdapter', :path => '../'
+
+  target 'AihasdTwoChannelBleAdapter_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
